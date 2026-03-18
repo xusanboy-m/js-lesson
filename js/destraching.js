@@ -1,3 +1,4 @@
+// JS da descructuring(parchalash) ve spreading(yoyish)
 const user = {
   name: "John",
   age: 30,
@@ -5,51 +6,76 @@ const user = {
   country: "USA",
   isMarried: false,
 };
-// let name = user.name;
+let name = "Doe";
 // let age = user.age;
 // let city = user.city;
 // let country = user.country;
 // let isMarried = user.isMarried;
-// let isMarried = user.isMarried;
-// console.log(name, age, city, isMarried);
-
+// console.log(name, age, city, country, isMarried);
 // Destructuring
-const { name: firstName, age, city, country, isMarried } = user;
-console.log(firstName, age, city, country, isMarried);
-console.log(firstName);
-console.log(country);
+const { name: firstName, age, city, countries, isMarried } = user;
+console.log(name, age, isMarried); // Doe 30 false
+console.log(firstName); // John
+console.log(countries); // undefined
 
-let year = 2020;
+let year = 2026;
 let isElectric = true;
 const car = {
-  brend: "Ford",
-  madell: "Mustang",
+  brand: "Ford",
+  model: "Mustang",
   year: 2020,
   color: "red",
   isElectric: false,
 };
 
-const { brend, madell, year: carYear, color, isElectric: carIsElectric } = car;
-console.log(brend, madell, carYear, color, carIsElectric);
+const { brand, model, color, year: carYear, isElectric: carIsElectric } = car;
+console.log(brand, model, color, carYear, carIsElectric); // Ford Mustang red 2020 false
 
-const game = ["counter-strike2", "dota 2", "pubg", "fortnite"];
-const [a, b, c, d] = game;
-console.log(a, b, c, d);
+const toys = ["counter-strike 2", "dota2", "pubg", "fortnite"];
+let a = toys[0];
+// let b = toys[1];
+// let c = toys[2];
+// let d = toys[3];
+// console.log(a, b, c, d); // counter-strike dota2 pubg fortnite
+const [e, b, c, d] = toys;
+console.log(e, b, c, d); // counter-strike dota2 pubg fortnite
 
-// otkazib yuborish
+const colors = ["qizil", "yashil", "ko'k"];
 
-const [, , , fortnite] = game;
-console.log(fortnite);
+const [first, second, third] = colors;
+console.log(first); // "qizil"
+console.log(second); // "yashil"
+// O'tkazib yuborish
+const [, , thirdColor] = colors;
+console.log(thirdColor); // "ko'k"
 
-// spread operator yordamida destructuring
-const [counterStrike, ...otherGames] = game;
-console.log(counterStrike);
+// Spread operator (...)
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+console.log(arr1); // [1, 2, 3]
+console.log(...arr1); // 1 2 3
 
-// birrlashtirish
-const user1 = {
-  name: "Alice",
-  age: 25,
-};
+// Arraylarni birlashtirish
+console.log(arr1.concat(arr2));
+const combinedArray = [...arr1, ...arr2];
+console.log(combinedArray); // [1, 2, 3, 4, 5, 6]
 
-const combainedUser = { ...user, ...user1 };
-console.log(combainedUser);
+// Arrayni copy qilish
+const copiedArray = [...arr1];
+console.log(copiedArray); // [1, 2, 3]
+
+// Objectlarni birlashtirish
+const obj1 = { a: 1, b: 2 };
+const obj2 = { b: 3, c: 4 };
+const combinedObj = { ...obj1, ...obj2 };
+console.log(combinedObj); // { a: 1, b: 3, c: 4 }
+
+const defaults = { theme: "dark", lang: "uz" };
+const userSettings = { lang: "en", fontSize: 14 };
+const settings = { ...defaults, ...userSettings };
+console.log(settings); // { theme: 'dark', lang: 'en', fontSize: 14 }
+// ⚠️ Keyingisi oldingilarni ustiga yozadi
+
+const user2 = { name: "Ali", age: 25 };
+const updated = { ...user2, age: 26 };
+console.log(updated); // { name: "Ali", age: 26 }
